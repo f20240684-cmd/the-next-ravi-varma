@@ -1,0 +1,28 @@
+# Dataset curation / preprocessing configuration.
+# Used by scripts/validate_dataset.py and scripts/prepare_dataset.py
+
+raw_dir: "data/raw"
+processed_dir: "data/processed"
+captions_dir: "data/captions"
+metadata_dir: "data/metadata"
+metadata_file: "data/metadata/metadata.jsonl"   # one JSON object per line, see data/README.md
+manifest_file: "data/processed/manifest.jsonl"
+
+validation:
+  min_resolution: 384          # shortest side, in pixels
+  allowed_formats: [".jpg", ".jpeg", ".png", ".webp"]
+  max_file_size_mb: 25
+  detect_duplicates: true      # perceptual hash comparison
+  require_caption: true
+
+preprocessing:
+  target_resolution: 512       # square resolution used for SD1.5 training
+  resize_mode: "center_crop"   # one of: center_crop, pad, stretch
+  interpolation: "lanczos"
+
+style:
+  artist_name: "Raja Ravi Varma"
+  trigger_token: "<rvvarma>"
+  # Prepended to every caption during dataset preparation, e.g.
+  # "<rvvarma>, oil painting of a royal Indian woman ..."
+  caption_prefix_template: "{trigger_token}, {caption}"

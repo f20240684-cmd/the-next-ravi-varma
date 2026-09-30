@@ -1,0 +1,49 @@
+# Core ML stack (pin to versions known to work together as of early 2026).
+# Install torch separately first if you need a specific CUDA build, e.g.:
+#   pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cu121
+torch==2.4.1
+torchvision==0.19.1
+
+diffusers==0.30.3
+transformers==4.44.2
+peft==0.12.0
+accelerate==0.34.2
+datasets==2.21.0
+safetensors==0.4.5
+
+# Optional but recommended for training speed/memory on CUDA GPUs.
+# Comment out on CPU-only / Apple Silicon machines.
+# bitsandbytes==0.43.3
+# xformers==0.0.27.post2
+
+# Image / vision
+pillow==10.4.0
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+
+# Captioning + evaluation
+open-clip-torch==2.26.1
+scikit-image==0.24.0   # SSIM
+lpips==0.1.4           # optional perceptual similarity
+
+# ControlNet pose extraction
+controlnet-aux==0.0.9
+
+# Web dashboard
+gradio==4.44.0
+
+# Config / utils
+requests==2.32.3
+pyyaml==6.0.2
+pydantic==2.9.1
+python-dotenv==1.0.1
+tqdm==4.66.5
+tensorboard==2.17.1
+
+# Optional LLM-based prompt expansion (only needed if you set an API key)
+openai==1.47.0
+anthropic==0.34.2
+
+# Testing
+pytest==8.3.3
+pytest-mock==3.14.0

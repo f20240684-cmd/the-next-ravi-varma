@@ -1,0 +1,48 @@
+# Default inference-time configuration.
+# python scripts/generate.py --config configs/generation.yaml --prompt "..."
+
+model:
+  base_model: "runwayml/stable-diffusion-v1-5"
+  model_family: "sd15"
+  lora_path: "checkpoints/lora/ravi_varma"
+  scheduler: "dpmsolver_multistep"   # dpmsolver_multistep | euler_a | ddim | pndm
+
+generation:
+  steps: 30
+  guidance_scale: 7.5
+  width: 512
+  height: 512
+  lora_scale: 1.0
+  seed: null            # null -> random seed each call, recorded in metadata
+  num_images: 1
+
+negative_prompt: >
+  malformed anatomy, extra fingers, missing fingers, fused fingers,
+  duplicated people, distorted faces, disfigured, mutated,
+  text, watermark, signature, logo, low quality, worst quality,
+  blurry image, out of focus, deformed hands, unnatural limbs,
+  cropped subjects, extra limbs, bad proportions, lowres
+
+controlnet:
+  enabled: false
+  type: "openpose"       # openpose | canny
+  model_id_openpose: "lllyasviel/control_v11p_sd15_openpose"
+  model_id_canny: "lllyasviel/control_v11p_sd15_canny"
+  strength: 0.8
+  canny_low_threshold: 100
+  canny_high_threshold: 200
+
+style:
+  trigger_token: "<rvvarma>"
+  style_strength: 1.0    # multiplies lora_scale from the UI
+
+hardware:
+  device: "auto"          # auto | cuda | mps | cpu
+  attention_slicing: "auto"
+  vae_slicing: true
+  vae_tiling: false
+  enable_model_cpu_offload: "auto"
+
+output:
+  generated_dir: "outputs/generated"
+  save_metadata: true

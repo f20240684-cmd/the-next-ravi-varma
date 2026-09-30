@@ -1,0 +1,31 @@
+/* The Next Ravi Varma -- dashboard theme accents */
+:root {
+    --rv-maroon: #6b1d1d;
+    --rv-gold: #c9a24b;
+}
+
+.rv-header {
+    text-align: center;
+    padding: 0.5rem 0 1rem 0;
+}
+
+.rv-header h1 {
+    color: var(--rv-maroon);
+    margin-bottom: 0.2rem;
+}
+
+.rv-disclaimer {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    border-left: 3px solid var(--rv-gold);
+    padding-left: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.rv-warning {
+    color: #92400e;
+    background: #fef3c7;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+}

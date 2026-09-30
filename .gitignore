@@ -1,0 +1,54 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+*.egg-info/
+build/
+dist/
+
+# Data & model artifacts (never commit large binaries)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/captions/*
+!data/captions/.gitkeep
+data/metadata/*
+!data/metadata/.gitkeep
+data/reference/*
+!data/reference/.gitkeep
+
+checkpoints/lora/*
+!checkpoints/lora/.gitkeep
+
+outputs/generated/*
+!outputs/generated/.gitkeep
+outputs/evaluations/*
+!outputs/evaluations/.gitkeep
+outputs/logs/*
+!outputs/logs/.gitkeep
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Keep project results and training metadata in GitHub
+!outputs/generated/
+!outputs/generated/*.png
+!outputs/generated/*.jpg
+!outputs/generated/*.jpeg
+
+!data/metadata/
+!data/metadata/metadata.jsonl
+
+!data/processed/
+!data/processed/manifest.jsonl

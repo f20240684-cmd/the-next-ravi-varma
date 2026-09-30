@@ -1,0 +1,30 @@
+# Requirements for Google Colab / Kaggle notebooks.
+# Colab already ships a CUDA-enabled torch build, so we deliberately do NOT
+# pin/reinstall torch here (reinstalling it is slow and can break the
+# preinstalled CUDA linkage). Everything else is pinned for reproducibility.
+
+diffusers==0.30.3
+transformers==4.44.2
+peft==0.12.0
+accelerate==0.34.2
+datasets==2.21.0
+safetensors==0.4.5
+
+bitsandbytes==0.43.3
+xformers==0.0.27.post2
+
+pillow==10.4.0
+opencv-python-headless==4.10.0.84
+
+open-clip-torch==2.26.1
+scikit-image==0.24.0
+lpips==0.1.4
+controlnet-aux==0.0.9
+
+gradio==4.44.0
+
+pyyaml==6.0.2
+pydantic==2.9.1
+python-dotenv==1.0.1
+tqdm==4.66.5
+tensorboard==2.17.1

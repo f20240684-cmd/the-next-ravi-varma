@@ -1,0 +1,60 @@
+# LoRA fine-tuning configuration -- SDXL (optional, needs >=16GB VRAM).
+# python scripts/train_lora.py --config configs/lora_sdxl.yaml
+
+base_model: "stabilityai/stable-diffusion-xl-base-1.0"
+model_family: "sdxl"
+revision: null
+variant: "fp16"
+
+dataset:
+  manifest_file: "data/processed/manifest.jsonl"
+  resolution: 1024
+  center_crop: true
+  random_flip: true
+
+lora:
+  rank: 16
+  alpha: 16
+  dropout: 0.05
+  target_modules: ["to_k", "to_q", "to_v", "to_out.0"]
+  train_text_encoder: false
+
+optimizer:
+  learning_rate: 1.0e-4
+  lr_scheduler: "constant_with_warmup"
+  lr_warmup_steps: 100
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 1.0e-2
+  adam_epsilon: 1.0e-8
+  use_8bit_adam: true
+
+training:
+  train_batch_size: 1
+  gradient_accumulation_steps: 4
+  max_train_steps: 2000
+  num_train_epochs: null
+  mixed_precision: "fp16"
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  seed: 42
+  enable_xformers: true
+
+checkpointing:
+  output_dir: "checkpoints/lora/ravi_varma_sdxl"
+  checkpointing_steps: 250
+  checkpoints_total_limit: 5
+  resume_from_checkpoint: "latest"
+
+logging:
+  logging_dir: "outputs/logs"
+  report_to: "tensorboard"
+  log_every_n_steps: 10
+
+validation:
+  validation_prompt: "<rvvarma>, portrait of a royal Indian woman in traditional attire, oil painting"
+  num_validation_images: 2
+  validation_steps: 250
+
+style:
+  trigger_token: "<rvvarma>"
